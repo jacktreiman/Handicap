@@ -12,6 +12,7 @@ Languages/Frameworks Used (20 points)
 
 - 10 - Learned/Used Vue.js frontend
 - 10 - Learned/Used Php Laravel backend
+- 0 - mysql database
 
 Functionality (60 points)
 
