@@ -10,8 +10,8 @@ Rubric turned in on time (5 points)
 
 Languages/Frameworks Used (20 points)
 
-10 - Learned/Used Vue.js frontend
-10 - Learned/Used Php Laravel backend
+- 10 - Learned/Used Vue.js frontend
+- 10 - Learned/Used Php Laravel backend
 
 Functionality (60 points)
 
