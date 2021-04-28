@@ -1,4 +1,0 @@
-users: create table users (id mediumint unsigned not null auto_increment, username varchar(30) not null, password varchar(70) not null, email varchar(50), primary key(id));
-scores: create table scores (scoreid mediumint unsigned not null auto_increment, score tinyint unsigned not null, course tinyint unsigned not null, slope tinyint unsigned not null, differential tinyint unsigned not null, userid mediumint unsigned not null, primary key (scoreid), foreign key (userid) references users (id));
-Groups: create table groups (groupid mediumint unsigned not null auto_increment, name varchar(30) not null, password varchar(70) not null, primary key (groupid));
-group_user: create table group_user (user mediumint unsigned not null, group_id mediumint unsigned not null, foreign key (user) references users (id), foreign key (group_id) references groups (groupid));
