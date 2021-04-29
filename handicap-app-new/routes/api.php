@@ -17,3 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//list every score
+Route::get('scores', 'ScoresController@index');
+
+//list single score
+Route::get('scores/{id}', 'ScoresController@show');
+
+//post score
+Route::post('scores', 'ScoresController@store');
+
+//edit
+Route::put('scores', 'ScoresController@store');
+
+//delete
+Route::delete('scores', 'ScoresController@destroy');

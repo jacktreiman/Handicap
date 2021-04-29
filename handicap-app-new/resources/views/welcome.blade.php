@@ -42,5 +42,12 @@
 
                 
         </div>
+
+        <div id = "app">
+        <div class = "container">
+            <scores></scores>
+            </div>
+            </div>
+            <scirpt src = "{{ asset('js/app.js') }}"></scirpt>
     </body>
 </html>
