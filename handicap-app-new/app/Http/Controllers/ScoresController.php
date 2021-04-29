@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Score;
-use App\Http\Resources\Score as ScoresResource;
+use App\Models\Scores;
+use App\Http\Resources\Scores as ScoresResource;
 
 class ScoresController extends Controller
 {
@@ -14,12 +14,9 @@ class ScoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-        $scores = Score::paginate(1);
-
-        return ScoreResource::collection($scores);
+    public function getAllScores(){
+        $scores = Scores::get()->toJson(JSON_PRETTY_PRINT);
+        return response($scores, 200);
     }
 
     /**

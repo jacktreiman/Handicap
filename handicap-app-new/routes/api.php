@@ -19,16 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //list every score
-Route::get('scores', 'ScoresController@index');
+Route::get('scores', 'App\http\Controllers\ScoresController@getAllScores');
 
 //list single score
 Route::get('scores/{id}', 'ScoresController@show');
 
 //post score
-Route::post('scores', 'ScoresController@store');
+//Route::post('scores', 'ScoresController@store');
 
 //edit
-Route::put('scores', 'ScoresController@store');
+//Route::put('scores', 'ScoresController@store');
 
 //delete
-Route::delete('scores', 'ScoresController@destroy');
+//Route::delete('scores', 'ScoresController@destroy');
