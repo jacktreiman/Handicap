@@ -22,13 +22,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('scores', 'App\http\Controllers\ScoresController@getAllScores');
 
 //list single score
-Route::get('scores/{id}', 'ScoresController@show');
+Route::get('scores/{id}', 'App\http\Controllers\ScoresController@show');
 
 //post score
-//Route::post('scores', 'ScoresController@store');
+Route::post('score', 'App\http\Controllers\ScoresController@store');
 
 //edit
 //Route::put('scores', 'ScoresController@store');
 
 //delete
-//Route::delete('scores', 'ScoresController@destroy');
+Route::delete('score/{id}', 'App\http\Controllers\ScoresController@destroy');

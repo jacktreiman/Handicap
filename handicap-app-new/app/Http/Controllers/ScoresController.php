@@ -15,8 +15,8 @@ class ScoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getAllScores(){
-        $scores = Scores::get()->toJson(JSON_PRETTY_PRINT);
-        return response($scores, 200);
+        $scores = Scores::paginate(15);
+        return ScoresResource::collection($scores);
     }
 
     /**
@@ -37,7 +37,17 @@ class ScoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $scores = $scores->isMethod('put') ? Scores::findOrFail($request->scores_id) : new Scores;
+        $scores->id = $request->input('scores_id');
+        $scores->strokes = $request->input('strokes');
+        $scores->course = $request->input('course');
+        $scores->slope = $request->input('slope');
+        $scores->differential = $request->input('differential');
+        $scores->user_id = $request->input('user_id');
+
+        if($scores->save()){
+            return new Scores($scores);
+        }
     }
 
     /**
@@ -48,7 +58,8 @@ class ScoresController extends Controller
      */
     public function show($id)
     {
-        //
+        $scores = Scores::findOrFail($id);
+        return new ScoresResource($scores);
     }
 
     /**
@@ -82,6 +93,9 @@ class ScoresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $scores = Scores::findOrFail($id);
+        if($scores->delete()){
+        return new ScoresResource($scores);
+        }
     }
 }

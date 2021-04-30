@@ -14,6 +14,14 @@ class Scores extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'strokes' => $this->strokes,
+            'course' => $this->course,
+            'slope' => $this->slope,
+            'differential' => $this->differential,
+            'user_id' => $this->user_id,
+
+        ];
     }
 }
