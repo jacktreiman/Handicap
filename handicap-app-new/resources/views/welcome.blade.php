@@ -36,17 +36,14 @@
                 </div>
             @endif
 
-            <h1>Welcome to the Handicap Calculator</h1>
-            <p>Developed by Jack Treiman and Nick Falshaw</p>
+            
+            <div>
+                <h1>Welcome to the Handicap Calculator App</h1>
+                <p style="text-align:center;">Developed by Jack Treiman and Nick Falshaw</p>
+            </div>
 
-                
         </div>
 
-        <div id = "app">
-        <div class = "container">
-            <scores></scores>
-            </div>
-            </div>
-            <scirpt src = "{{ asset('js/app.js') }}"></scirpt>
+        
     </body>
 </html>
