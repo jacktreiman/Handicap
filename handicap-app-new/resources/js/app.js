@@ -32,6 +32,6 @@ Vue.component('scores', require('./components/Scores.vue').default);
 
 const app = new Vue({
     router,
-    el: '#app',
+    el: '#app2',
     render: h => h(App)
 });
