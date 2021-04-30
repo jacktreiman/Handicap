@@ -24,9 +24,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -34,7 +36,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        {{-- <ul class="navbar-nav">
+                            <li class="nav-item">
+                              <router-link
+                                class="nav-link"
+                                data-toggle="collapse"
+                                :to="{ name: 'post-score' }"
+                              >
+                                Post A Score
+                              </router-link>
+                            </li>
+                  
+                            <li class="nav-item">
+                              <router-link
+                                class="nav-link"
+                                data-toggle="collapse"
+                                :to="{ name: 'stats' }"
+                              >
+                                Stats
+                              </router-link>
+                            </li>
+                          </ul> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -79,6 +101,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        {{-- <div id="app2"></div>
+
+        <script src="{{ asset('js/app.js') }}"></script> --}}
     </div>
 </body>
 </html>

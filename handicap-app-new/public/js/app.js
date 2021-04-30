@@ -37802,7 +37802,7 @@ var render = function() {
             attrs: { id: "navbarCollapse" }
           },
           [
-            _c("ul", { staticClass: "navbar-nav" }, [
+            _c("ul", { staticClass: "navbar-nav ml-auto" }, [
               _c(
                 "li",
                 { staticClass: "nav-item" },

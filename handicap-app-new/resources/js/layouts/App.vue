@@ -12,7 +12,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <router-link
               class="nav-link"

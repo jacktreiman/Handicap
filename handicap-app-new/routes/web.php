@@ -19,13 +19,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home/stats', function () {
-    return view('layouts.vue');
-});
+// Route::get('/home/stats', function () {
+//     return view('layouts.vue');
+// });
 
-Route::get('/home/post-score', function () {
+// Route::get('/home/post-score', function () {
+//     return view('layouts.vue');
+// });
+
+Route::get('/home/{any}', function () {
     return view('layouts.vue');
-});
+})->where('any', '.*');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
