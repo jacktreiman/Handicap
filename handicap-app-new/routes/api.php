@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //list every score
 Route::get('scores', 'App\http\Controllers\ScoresController@getAllScores');
 
+Route::get('differentials', 'App\http\Controllers\ScoresController@getAllDifferentials');
+
 //list single score
 Route::get('scores/{id}', 'App\http\Controllers\ScoresController@show');
 
