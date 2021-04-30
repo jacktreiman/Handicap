@@ -1996,7 +1996,7 @@ Vue.component('scores', __webpack_require__(/*! ./components/Scores.vue */ "./re
 
 var app = new Vue({
   router: _router__WEBPACK_IMPORTED_MODULE_0__.default,
-  el: '#app',
+  el: '#app2',
   render: function render(h) {
     return h(_layouts_App_vue__WEBPACK_IMPORTED_MODULE_1__.default);
   }

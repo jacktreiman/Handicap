@@ -86,8 +86,8 @@
             @yield('content')
         </main>
     </div> --}}
-    
-    <div id="app"></div>
+
+    <div id="app2"></div>
 
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
