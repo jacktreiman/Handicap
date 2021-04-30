@@ -19,6 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //list every score
+
+//$url = route('http://127.0.0.1:8001/home');
+Route::redirect('home', '', 301);
+
 Route::get('scores', 'App\http\Controllers\ScoresController@getAllScores');
 
 Route::get('differentials', 'App\http\Controllers\ScoresController@getAllDifferentials');

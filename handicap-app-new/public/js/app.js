@@ -1953,7 +1953,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      scores: [],
+      score: {
+        id: '',
+        strokes: '',
+        course: '',
+        slope: '',
+        differential: '',
+        user_id: ''
+      },
+      scores_id: '',
+      edit: false
+    };
+  },
+  created: function created() {
+    this.fetchScores();
+  },
+  methods: {
+    fetchScores: function fetchScores() {
+      fetch('api/scores').then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        console.log(res.data);
+      });
+    }
+  }
+});
 
 /***/ }),
 

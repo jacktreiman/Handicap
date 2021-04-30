@@ -14,6 +14,37 @@
 
 <script>
 export default {
-    
+    data() {
+      return{
+        scores: [],
+        score: {
+          id: '',
+          strokes: '',
+          course: '',
+          slope: '',
+          differential: '',
+          user_id: ''
+        },
+        scores_id: '',
+        edit: false
+      }
+    },
+    created(){
+      this.fetchScores();
+    },
+
+    methods: {
+      fetchScores(){
+        //router.push('http://127.0.0.1:8001')
+        //this.$router.push('http://127.0.0.1:8001')
+        fetch('api/scores')
+        .then(res => res.json())
+        .then(this.$router.push('http://127.0.0.1:8001/home'))
+        .then(res => {
+          console.log(res.data);
+        })
+      }
+    }
+
 }
 </script>

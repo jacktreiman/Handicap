@@ -18,12 +18,13 @@ class ScoresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getAllScores(){
-        $scores = Scores::paginate(15);
+        //this.$router.push('http://127.0.0.1:8001/home');
+        $scores = Scores::orderBy('created_at', 'desc')->paginate(15);
         return ScoresResource::collection($scores);
     }
 
     public function getAllDifferentials(){
-        $differentials = Scores::pluck('differential');
+        $differentials = Scores::orderBy('created_at', 'desc')->pluck('differential');
         return $differentials;
     }
 
