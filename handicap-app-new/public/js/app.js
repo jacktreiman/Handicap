@@ -2072,7 +2072,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
   mode: 'history',
   linkExactActiveClass: 'active',
   routes: [{
-    path: '/home/post-socre',
+    path: '/home/post-score',
     name: 'post-score',
     component: _pages_PostScore_vue__WEBPACK_IMPORTED_MODULE_0__.default
   }, {

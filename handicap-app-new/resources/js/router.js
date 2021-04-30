@@ -11,7 +11,7 @@ const router = new VueRouter({
     linkExactActiveClass: 'active',
     routes: [
         {
-            path: '/home/post-socre',
+            path: '/home/post-score',
             name: 'post-score',
             component: PostScore
         },
