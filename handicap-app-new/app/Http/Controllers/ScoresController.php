@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+//use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Scores;
@@ -24,10 +26,10 @@ class ScoresController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /*public function create()
     {
         //
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -37,17 +39,20 @@ class ScoresController extends Controller
      */
     public function store(Request $request)
     {
-        $scores = $scores->isMethod('put') ? Scores::findOrFail($request->scores_id) : new Scores;
+        //$scores = new Scores;
+        $scores = $request->isMethod('put') ? Scores::findOrFail($request->scores_id) : new Scores;
+        //$scores = new Scores;
         $scores->id = $request->input('scores_id');
         $scores->strokes = $request->input('strokes');
         $scores->course = $request->input('course');
         $scores->slope = $request->input('slope');
         $scores->differential = $request->input('differential');
         $scores->user_id = $request->input('user_id');
+        
 
-        if($scores->save()){
-            return new Scores($scores);
-        }
+        $scores->save();
+            return new ScoresResource($scores);
+    
     }
 
     /**
@@ -68,10 +73,10 @@ class ScoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    /*public function edit($id)
     {
         //
-    }
+    }*/
 
     /**
      * Update the specified resource in storage.

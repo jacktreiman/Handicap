@@ -28,7 +28,7 @@ Route::get('scores/{id}', 'App\http\Controllers\ScoresController@show');
 Route::post('score', 'App\http\Controllers\ScoresController@store');
 
 //edit
-//Route::put('scores', 'ScoresController@store');
+Route::put('score', 'App\http\Controllers\ScoresController@store');
 
 //delete
 Route::delete('score/{id}', 'App\http\Controllers\ScoresController@destroy');
