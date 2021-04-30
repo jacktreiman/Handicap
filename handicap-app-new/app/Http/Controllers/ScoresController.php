@@ -23,8 +23,8 @@ class ScoresController extends Controller
     }
 
     public function getAllDifferentials(){
-        $differentials = Scores::paginate(15);
-        return DiffResource::collection($differentials);
+        $differentials = Scores::pluck('differential');
+        return $differentials;
     }
 
     /**
