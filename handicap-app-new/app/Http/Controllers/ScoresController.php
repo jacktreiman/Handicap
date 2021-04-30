@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Scores;
 use App\Http\Resources\Scores as ScoresResource;
+use App\Http\Resources\Diff as DiffResource;
 
 class ScoresController extends Controller
 {
@@ -19,6 +20,11 @@ class ScoresController extends Controller
     public function getAllScores(){
         $scores = Scores::paginate(15);
         return ScoresResource::collection($scores);
+    }
+
+    public function getAllDifferentials(){
+        $differentials = Scores::paginate(15);
+        return DiffResource::collection($differentials);
     }
 
     /**
