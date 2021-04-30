@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <!-- <router-link :to="{ name: 'home' }" class="navbar-brand"
         >Laravel-Vue SPA</router-link
@@ -11,8 +12,8 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
           <li class="nav-item">
             <router-link
               class="nav-link"

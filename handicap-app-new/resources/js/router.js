@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import PostScore from './pages/PostScore.vue';
 import Stats from './pages/Stats.vue';
+import About from './pages/About.vue';
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,11 @@ const router = new VueRouter({
             path: '/home/stats',
             name: 'stats',
             component: Stats
+        },
+        {
+            path: '/home',
+            name: 'about',
+            component: About
         },
     ]
 });
