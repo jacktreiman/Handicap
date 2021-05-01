@@ -19,7 +19,7 @@ class ScoresController extends Controller
      */
     public function getAllScores(){
         //this.$router.push('http://127.0.0.1:8001/home');
-        $scores = Scores::orderBy('created_at', 'desc')->paginate(15);
+        $scores = Scores::orderBy('created_at', 'desc')->paginate(5);
         return ScoresResource::collection($scores);
     }
 

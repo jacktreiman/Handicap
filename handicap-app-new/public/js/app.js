@@ -1889,6 +1889,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     $route: function $route() {
@@ -1952,7 +1953,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+console.log("hello");
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1974,8 +1975,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchScores: function fetchScores() {
-      fetch('api/scores').then(function (res) {
-        return res.json();
+      fetch('/api/scores').then(function (res) {
+        return res.json;
       }).then(function (res) {
         console.log(res.data);
       });
@@ -2014,8 +2015,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//Vue.component('scores', require('./pages/Scores.vue').default);
 
-Vue.component('scores', __webpack_require__(/*! ./components/Scores.vue */ "./resources/js/components/Scores.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -2094,6 +2095,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ //import About from './pages/About.vue';
 
 vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_3__.default);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
@@ -2107,7 +2109,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
     path: '/home/stats',
     name: 'stats',
     component: _pages_Stats_vue__WEBPACK_IMPORTED_MODULE_1__.default
-  }]
+  }
+  /*{
+      path: '/home',
+      name: 'about',
+      component: About
+  },*/
+  ]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
@@ -37496,43 +37504,6 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./resources/js/components/Scores.vue":
-/*!********************************************!*\
-  !*** ./resources/js/components/Scores.vue ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Scores_vue_vue_type_template_id_4c196c68___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Scores.vue?vue&type=template&id=4c196c68& */ "./resources/js/components/Scores.vue?vue&type=template&id=4c196c68&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
-
-
-/* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
-  script,
-  _Scores_vue_vue_type_template_id_4c196c68___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Scores_vue_vue_type_template_id_4c196c68___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Scores.vue"
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
-
-/***/ }),
-
 /***/ "./resources/js/layouts/App.vue":
 /*!**************************************!*\
   !*** ./resources/js/layouts/App.vue ***!
@@ -37698,23 +37669,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Scores.vue?vue&type=template&id=4c196c68&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/Scores.vue?vue&type=template&id=4c196c68& ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Scores_vue_vue_type_template_id_4c196c68___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Scores_vue_vue_type_template_id_4c196c68___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Scores_vue_vue_type_template_id_4c196c68___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Scores.vue?vue&type=template&id=4c196c68& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Scores.vue?vue&type=template&id=4c196c68&");
-
-
-/***/ }),
-
 /***/ "./resources/js/layouts/App.vue?vue&type=template&id=9087fe26&":
 /*!*********************************************************************!*\
   !*** ./resources/js/layouts/App.vue?vue&type=template&id=9087fe26& ***!
@@ -37766,38 +37720,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Scores.vue?vue&type=template&id=4c196c68&":
-/*!******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Scores.vue?vue&type=template&id=4c196c68& ***!
-  \******************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("handicap website")])])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=template&id=9087fe26&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/layouts/App.vue?vue&type=template&id=9087fe26& ***!
@@ -37826,11 +37748,11 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarCollapse" }
+            staticClass: "collapse navbar-collapse justify-content-center",
+            attrs: { id: "navbarNav" }
           },
           [
-            _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+            _c("ul", { staticClass: "navbar-nav" }, [
               _c(
                 "li",
                 { staticClass: "nav-item" },
@@ -37972,7 +37894,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "card-header" }, [_vm._v("Stats")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v("Include stats here.")
+              _vm._v("Include statuees here.")
             ])
           ])
         ])

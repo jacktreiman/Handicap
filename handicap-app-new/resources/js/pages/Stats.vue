@@ -4,8 +4,7 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Stats</div>
-
-          <div class="card-body">Include stats here.</div>
+          <div class="card-body">Include statuees here.</div>
         </div>
       </div>
     </div>
@@ -13,6 +12,7 @@
 </template>
 
 <script>
+console.log("hello");
 export default {
     data() {
       return{
@@ -34,17 +34,14 @@ export default {
     },
 
     methods: {
-      fetchScores(){
-        //router.push('http://127.0.0.1:8001')
-        //this.$router.push('http://127.0.0.1:8001')
-        fetch('api/scores')
-        .then(res => res.json())
-        .then(this.$router.push('http://127.0.0.1:8001/home'))
-        .then(res => {
-          console.log(res.data);
-        })
-      }
-    }
+        fetchScores(){
+          fetch('/api/scores')
+          .then(res => res.json)
+          .then(res => {
+            console.log(res.data)
+          });
+        }
 
+}
 }
 </script>
