@@ -33,6 +33,26 @@
               Stats
             </router-link>
           </li>
+
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              data-toggle="collapse"
+              :to="{ name: 'join-group' }"
+            >
+              Join A Group
+            </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              data-toggle="collapse"
+              :to="{ name: 'my-groups' }"
+            >
+              My Groups
+            </router-link>
+          </li>
         </ul>
       </div>
     </nav>
