@@ -1910,6 +1910,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     $route: function $route() {
@@ -38012,6 +38022,25 @@ var render = function() {
           },
           [
             _c("ul", { staticClass: "navbar-nav" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: {
+                        "data-toggle": "collapse",
+                        to: { name: "about" }
+                      }
+                    },
+                    [_vm._v("\n            About\n          ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
                 "li",
                 { staticClass: "nav-item" },
