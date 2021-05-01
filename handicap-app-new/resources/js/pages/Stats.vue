@@ -4,7 +4,18 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Stats</div>
-          <div class="card-body">Include statuees here.</div>
+          <div class="card-body">Top rounds raw</div>
+          <div class = "card card-body mb-2" v-for="score in scores" v-bind:key="score.id">
+            <h3> 
+              {{score.user_id}}
+            </h3>
+            <p>
+              Score: 
+              {{score.strokes}}
+              Differential: 
+              {{score.differential}}
+              </p>
+            </div>
         </div>
       </div>
     </div>
@@ -26,6 +37,7 @@ export default {
           user_id: ''
         },
         scores_id: '',
+        pagination: {},
         edit: false
       }
     },
@@ -36,10 +48,14 @@ export default {
     methods: {
         fetchScores(){
           fetch('/api/scores')
-          .then(res => res.json)
+          .then(res => res.json())
           .then(res => {
-            console.log(res.data)
-          });
+            this.scores = res.data;
+          })
+          .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                  });
         }
 
 }

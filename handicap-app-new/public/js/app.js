@@ -1925,7 +1925,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      scores: [],
+      score: {
+        id: '',
+        strokes: '',
+        course: '',
+        slope: '',
+        differential: '',
+        user_id: ''
+      },
+      scores_id: '',
+      pagination: {},
+      edit: false
+    };
+  },
+  methods: {
+    addScore: function addScore() {
+      var _this = this;
+
+      fetch('/api/score', {
+        method: 'post',
+        body: JSON.stringify(this.score),
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this.score.strokes = '';
+        _this.score.course = '';
+        _this.score.slope = '';
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -1953,6 +2002,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 console.log("hello");
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -1967,6 +2027,7 @@ console.log("hello");
         user_id: ''
       },
       scores_id: '',
+      pagination: {},
       edit: false
     };
   },
@@ -1975,10 +2036,15 @@ console.log("hello");
   },
   methods: {
     fetchScores: function fetchScores() {
+      var _this = this;
+
       fetch('/api/scores').then(function (res) {
-        return res.json;
+        return res.json();
       }).then(function (res) {
-        console.log(res.data);
+        _this.scores = res.data;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
       });
     }
   }
@@ -37836,28 +37902,116 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mt-5" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Post a Score")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("Input a score here.")
-            ])
-          ])
+  return _c("div", { staticClass: "container mt-5" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("Post a Score")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v("Input a score here.")
+          ]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "mb-3",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addScore($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.score.strokes,
+                      expression: "score.strokes"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "strokes" },
+                  domProps: { value: _vm.score.strokes },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.score, "strokes", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.score.course,
+                      expression: "score.course"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "course rating" },
+                  domProps: { value: _vm.score.course },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.score, "course", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.score.slope,
+                      expression: "score.slope"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "slope" },
+                  domProps: { value: _vm.score.slope },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.score, "slope", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-light tn-block",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Enter a score")]
+              )
+            ]
+          )
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37880,28 +38034,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mt-5" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
+  return _c("div", { staticClass: "container mt-5" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "div",
+          { staticClass: "card" },
+          [
             _c("div", { staticClass: "card-header" }, [_vm._v("Stats")]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("Include statuees here.")
-            ])
-          ])
-        ])
+            _c("div", { staticClass: "card-body" }, [_vm._v("Top rounds raw")]),
+            _vm._v(" "),
+            _vm._l(_vm.scores, function(score) {
+              return _c(
+                "div",
+                { key: score.id, staticClass: "card card-body mb-2" },
+                [
+                  _c("h3", [
+                    _vm._v(
+                      " \n            " + _vm._s(score.user_id) + "\n          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "\n            Score: \n            " +
+                        _vm._s(score.strokes) +
+                        "\n            Differential: \n            " +
+                        _vm._s(score.differential) +
+                        "\n            "
+                    )
+                  ])
+                ]
+              )
+            })
+          ],
+          2
+        )
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

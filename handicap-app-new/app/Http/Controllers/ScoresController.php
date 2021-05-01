@@ -7,8 +7,11 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Scores;
+use App\Models\User;
 use App\Http\Resources\Scores as ScoresResource;
 use App\Http\Resources\Diff as DiffResource;
+//use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ScoresController extends Controller
 {
@@ -19,13 +22,27 @@ class ScoresController extends Controller
      */
     public function getAllScores(){
         //this.$router.push('http://127.0.0.1:8001/home');
-        $scores = Scores::orderBy('created_at', 'desc')->paginate(5);
+        $scores = Scores::orderBy('strokes', 'asc')->paginate(10);
         return ScoresResource::collection($scores);
     }
 
     public function getAllDifferentials(){
         $differentials = Scores::orderBy('created_at', 'desc')->pluck('differential');
         return $differentials;
+    }
+
+    public function getUserScores(){
+        $user_id = Auth::id();
+        $scores = Scores::where('user_id','=',$user_id)->orderBy('created_at', 'desc')->paginate(10);
+        return ScoresResource::collection($scores);
+    }
+
+    public function getUserId()
+    {
+        // Retrieve the currently authenticated user...
+        $id = Auth::id();
+        return $id;
+
     }
 
     /**
@@ -46,15 +63,16 @@ class ScoresController extends Controller
      */
     public function store(Request $request)
     {
-        //$scores = new Scores;
+        //$scores = new Scores; 
+
         $scores = $request->isMethod('put') ? Scores::findOrFail($request->scores_id) : new Scores;
         //$scores = new Scores;
         $scores->id = $request->input('scores_id');
         $scores->strokes = $request->input('strokes');
         $scores->course = $request->input('course');
         $scores->slope = $request->input('slope');
-        $scores->differential = $request->input('differential');
-        $scores->user_id = $request->input('user_id');
+        $scores->differential = $this;
+        $scores->user_id = Auth::id();
         
 
         $scores->save();
