@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import PostScore from './pages/PostScore.vue';
-import Stats from './pages/Stats.vue';
+import ScoreLeaderboard from './pages/ScoreLeaderboard.vue';
+import TopHandicaps from './pages/TopHandicaps.vue';
 import About from './pages/About.vue';
 import Groups from './pages/Groups.vue';
 import MyGroups from './pages/MyGroups.vue';
@@ -19,9 +20,14 @@ const router = new VueRouter({
             component: PostScore
         },
         {
-            path: '/home/stats',
-            name: 'stats',
-            component: Stats
+            path: '/home/score-leaderboard',
+            name: 'top-scores',
+            component: ScoreLeaderboard
+        },
+        {
+            path: '/home/handicap-leaderboard',
+            name: 'top-handicaps',
+            component: TopHandicaps
         },
         {
             path: '/home',

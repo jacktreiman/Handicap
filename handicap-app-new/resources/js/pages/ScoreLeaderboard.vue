@@ -3,8 +3,8 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Stats</div>
-          <div class="card-body">Top rounds raw</div>
+          <div class="card-header">Score Leaderboard</div>
+          <div class="card-body">Top 10 rounds (raw scores):</div>
           <div class = "card card-body mb-2" v-for="score in scores" v-bind:key="score.id">
             <h3> 
               {{score.user_id}}

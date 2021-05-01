@@ -38,9 +38,19 @@
             <router-link
               class="nav-link"
               data-toggle="collapse"
-              :to="{ name: 'stats' }"
+              :to="{ name: 'top-scores' }"
             >
-              Stats
+              Top Scores
+            </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              data-toggle="collapse"
+              :to="{ name: 'top-handicaps' }"
+            >
+              Top Handicaps
             </router-link>
           </li>
 
