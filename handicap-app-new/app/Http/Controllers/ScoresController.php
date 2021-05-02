@@ -24,10 +24,13 @@ class ScoresController extends Controller
    
      */
    
-    public function __construct()
+   /* public function __construct()
     {
         $this->middleware('auth');
-    }
+    }*/
+
+
+
      public function getAllScores(){
         //this.$router.push('http://127.0.0.1:8001/home');
         $scores = Scores::orderBy('strokes', 'asc')->paginate(10);
@@ -40,7 +43,7 @@ class ScoresController extends Controller
     }
 
     public function getUserScores(Request $request){
-        $user_id = $request->user()->id;
+        $user_id = Auth::id();
         $scores = Scores::where('user_id','=',$user_id)->orderBy('created_at', 'desc')->paginate(10);
         return ScoresResource::collection($scores);
     }
@@ -79,8 +82,8 @@ class ScoresController extends Controller
         $scores->strokes = $request->input('strokes');
         $scores->course = $request->input('course');
         $scores->slope = $request->input('slope');
-        $scores->differential = $this;
-        $scores->user_id = Auth::id();
+        $scores->differential = $slope*$course;
+        $scores->user_id = $request->input('user_id');
         
 
         $scores->save();

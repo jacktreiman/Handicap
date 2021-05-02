@@ -20,7 +20,7 @@ class GroupsController extends Controller
      */
     public function index()
     {
-        $groups = Groups::paginate(20);
+        $groups = Groups::orderBy('created_at', 'desc')->paginate(40);
         return GroupsResource::collection($groups);
     }
 

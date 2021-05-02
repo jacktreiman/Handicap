@@ -32,4 +32,8 @@ Route::get('/home/{any}', function () {
 })->where('any', '.*');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    //added
+    Auth::routes();
+    //added
+    Route::get('/home', [App\Http\Controllers\userScoreController::class, 'index'])->name('home');
 

@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//middleware('auth:api')->
-Route::get('user', function (Request $request) {
+
+Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user()->id();
 });
 
@@ -25,9 +25,15 @@ Route::get('user', function (Request $request) {
 
 Route::get('scores', 'App\http\Controllers\ScoresController@getAllScores');
 
+Route::get('userScores', 'App\http\Controllers\userScoreController@index');
+
 Route::get('userid', 'App\http\Controllers\ScoresController@getUserId');
 
-Route::get('userScores', 'App\http\Controllers\ScoresController@getUserScores');
+/*Route::middleware(['auth:api'])->group(function () {
+
+    Route::get("userScores",  "App\http\Controllers\ScoresController@getUserScores");
+
+});*/
 
 Route::get('differentials', 'App\http\Controllers\ScoresController@getAllDifferentials');
 
@@ -50,4 +56,4 @@ Route::delete('group/{groupid}', 'App\http\Controllers\GroupsController@destroy'
 Route::post('group', 'App\http\Controllers\GroupsController@store');
 
 Route::get('group_usrs', 'App\http\Controllers\group_usrController@index');
-Route::post('group_usr', 'App\http\Controllers\group_usrController@store');
+Route::post('group_usr', 'App\http\Controllers\GroupsController@store');
