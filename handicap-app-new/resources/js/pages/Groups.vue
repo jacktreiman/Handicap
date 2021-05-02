@@ -57,6 +57,7 @@ export default {
         .then(data => {
           this.group.name = '';
         })
+        .then(this.fetchGroups())
         .catch(err => console.log(err))
       },
 

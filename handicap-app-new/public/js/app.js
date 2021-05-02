@@ -2008,7 +2008,7 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (data) {
         _this.group.name = '';
-      })["catch"](function (err) {
+      }).then(this.fetchGroups())["catch"](function (err) {
         return console.log(err);
       });
     },
@@ -2083,6 +2083,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2099,14 +2106,13 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {},
       edit: false,
       differentials: [],
-      differential: {
-        handicap: ''
-      }
+      average: ''
     };
   },
   created: function created() {
     this.fetchScores();
-    this.addScore(); //this.fetchHandicap();
+    this.addScore();
+    this.getHandicap(); //this.fetchHandicap();
   },
   methods: {
     addScore: function addScore() {
@@ -2152,6 +2158,21 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // handle error
         console.log(error);
+      });
+    },
+    getHandicap: function getHandicap() {
+      var _this4 = this;
+
+      fetch('/api/userScores').then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        var sum = 0;
+
+        for (var i = 0; i < res.data.length; i++) {
+          sum += res.data[i].differential;
+        }
+
+        _this4.average = sum / res.data.length;
       });
     }
   }
@@ -38887,7 +38908,15 @@ var render = function() {
             })
           ],
           2
-        )
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "card card-body mb-2" }, [
+          _c("h3", [
+            _vm._v(
+              " \n            Handicap: " + _vm._s(_vm.average) + "\n          "
+            )
+          ])
+        ])
       ])
     ])
   ])
