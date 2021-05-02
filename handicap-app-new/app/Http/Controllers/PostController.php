@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Models\Groups;
 use App\Models\User;
+use App\Models\Post;
 use App\Http\Resources\Post as PostResource;
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $groups = Posts::orderBy('created_at', 'desc')->paginate(40);
+        $groups = Post::orderBy('created_at', 'desc')->paginate(40);
         return PostResource::collection($groups);
     }
 

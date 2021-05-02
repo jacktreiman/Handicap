@@ -36,6 +36,8 @@ Route::get('userid', 'App\http\Controllers\ScoresController@getUserId');
 });*/
 
 Route::get('differentials', 'App\http\Controllers\ScoresController@getAllDifferentials');
+Route::get('posts', 'App\http\Controllers\PostController@index');
+Route::get('post', 'App\http\Controllers\PostController@store');
 
 Route::get('userDifferentials', 'App\http\Controllers\userScoreController@getUserDifferentials');
 
