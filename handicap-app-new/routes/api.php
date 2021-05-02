@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//middleware('auth:api')->
+Route::get('user', function (Request $request) {
+    return $request->user()->id();
 });
 
 //list every score
@@ -42,3 +42,12 @@ Route::put('score', 'App\http\Controllers\ScoresController@store');
 
 //delete
 Route::delete('score/{id}', 'App\http\Controllers\ScoresController@destroy');
+
+
+
+Route::get('groups', 'App\http\Controllers\GroupsController@index');
+Route::delete('group/{groupid}', 'App\http\Controllers\GroupsController@destroy');
+Route::post('group', 'App\http\Controllers\GroupsController@store');
+
+Route::get('group_usrs', 'App\http\Controllers\group_usrController@index');
+Route::post('group_usr', 'App\http\Controllers\group_usrController@store');

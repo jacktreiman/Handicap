@@ -12,6 +12,8 @@ use App\Http\Resources\Scores as ScoresResource;
 use App\Http\Resources\Diff as DiffResource;
 //use Auth;
 use Illuminate\Support\Facades\Auth;
+//use Illuminate\Http\Request;
+
 
 class ScoresController extends Controller
 {
@@ -19,8 +21,14 @@ class ScoresController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+   
      */
-    public function getAllScores(){
+   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+     public function getAllScores(){
         //this.$router.push('http://127.0.0.1:8001/home');
         $scores = Scores::orderBy('strokes', 'asc')->paginate(10);
         return ScoresResource::collection($scores);
@@ -31,8 +39,8 @@ class ScoresController extends Controller
         return $differentials;
     }
 
-    public function getUserScores(){
-        $user_id = Auth::id();
+    public function getUserScores(Request $request){
+        $user_id = $request->user()->id;
         $scores = Scores::where('user_id','=',$user_id)->orderBy('created_at', 'desc')->paginate(10);
         return ScoresResource::collection($scores);
     }
