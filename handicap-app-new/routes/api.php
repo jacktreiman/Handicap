@@ -37,11 +37,14 @@ Route::get('userid', 'App\http\Controllers\ScoresController@getUserId');
 
 Route::get('differentials', 'App\http\Controllers\ScoresController@getAllDifferentials');
 
+Route::get('userDifferentials', 'App\http\Controllers\userScoreController@getUserDifferentials');
+
 //list single score
 Route::get('scores/{id}', 'App\http\Controllers\ScoresController@show');
 
 //post score
-Route::post('score', 'App\http\Controllers\ScoresController@store');
+Route::post('score', 'App\http\Controllers\userScoreController@store');
+Route::post('scoreInput', 'App\http\Controllers\ScoresController@store');
 
 //edit
 Route::put('score', 'App\http\Controllers\ScoresController@store');

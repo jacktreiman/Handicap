@@ -4,7 +4,7 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Post a Score</div>
-          <div class="card-body">Input a score here.</div>
+          <div class="card-body">Input a score here. Differential = (slope/113)*(score - course rating)</div>
           <form @submit.prevent = "addScore" class = "mb-3">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="strokes" v-model="score.strokes">
@@ -16,7 +16,10 @@
             <input type="text" class="form-control" placeholder="slope" v-model="score.slope">
             </div>
             <div class="form-group">
-            <input type="text" class="form-control" placeholder :id= "userid" v-model="score.user_id">
+            <input type="text" class="form-control" placeholder="differential" v-model="score.differential">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="user id" v-model="score.user_id">
             </div>
               <button type = "submit" class = "btn btn-light tn-block">Enter a score</button>
             </form>
@@ -31,6 +34,7 @@
               {{score.differential}}
               </p>
               </div>
+
         </div>
       </div>
     </div>
@@ -52,16 +56,22 @@ export default {
         },
         scores_id: '',
         pagination: {},
-        edit: false
+        edit: false,
+        differentials: [],
+        differential: {
+          handicap: '',
+        }
       }
     },  
         created(){
       this.fetchScores();
+      this.addScore();
+      //this.fetchHandicap();
     },
 
     methods: {
       addScore(){
-        fetch('/api/score',{
+        fetch('/api/scoreInput',{
           method: 'post',
           body: JSON.stringify(this.score),
           headers: {
@@ -73,7 +83,10 @@ export default {
           this.score.strokes = '';
           this.score.course = '';
           this.score.slope = '';
+          this.score.differential = '';
+          this.score.user_id = '';
         })
+        .then(this.fetchScores())
         .catch(err => console.log(err))
       },
 
@@ -82,6 +95,17 @@ export default {
           .then(res => res.json())
           .then(res => {
             this.scores = res.data;
+          })
+          .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                  });
+        },
+         fetchHandicap(){
+          fetch('/api/userDifferentials')
+          .then(res => res.json())
+          .then(res => {
+            this.differentials = res.data;
           })
           .catch(function (error) {
                     // handle error

@@ -82,7 +82,7 @@ class ScoresController extends Controller
         $scores->strokes = $request->input('strokes');
         $scores->course = $request->input('course');
         $scores->slope = $request->input('slope');
-        $scores->differential = $slope*$course;
+        $scores->differential = $request->input('differential');
         $scores->user_id = $request->input('user_id');
         
 

@@ -2079,6 +2079,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2093,17 +2097,22 @@ __webpack_require__.r(__webpack_exports__);
       },
       scores_id: '',
       pagination: {},
-      edit: false
+      edit: false,
+      differentials: [],
+      differential: {
+        handicap: ''
+      }
     };
   },
   created: function created() {
     this.fetchScores();
+    this.addScore(); //this.fetchHandicap();
   },
   methods: {
     addScore: function addScore() {
       var _this = this;
 
-      fetch('/api/score', {
+      fetch('/api/scoreInput', {
         method: 'post',
         body: JSON.stringify(this.score),
         headers: {
@@ -2115,7 +2124,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.score.strokes = '';
         _this.score.course = '';
         _this.score.slope = '';
-      })["catch"](function (err) {
+        _this.score.differential = '';
+        _this.score.user_id = '';
+      }).then(this.fetchScores())["catch"](function (err) {
         return console.log(err);
       });
     },
@@ -2126,6 +2137,18 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this2.scores = res.data;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    fetchHandicap: function fetchHandicap() {
+      var _this3 = this;
+
+      fetch('/api/userDifferentials').then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this3.differentials = res.data;
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -2202,6 +2225,79 @@ console.log("hello");
         return res.json();
       }).then(function (res) {
         _this.scores = res.data;
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TopHandicaps.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TopHandicaps.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      scores: [],
+      score: {
+        id: '',
+        strokes: '',
+        course: '',
+        slope: '',
+        differential: '',
+        user_id: ''
+      },
+      scores_id: '',
+      pagination: {},
+      edit: false,
+      differentials: [],
+      handicap: {
+        differential: ''
+      }
+    };
+  },
+  created: function created() {
+    this.fetchHandicap();
+  },
+  methods: {
+    fetchHandicap: function fetchHandicap() {
+      var _this = this;
+
+      fetch('/api/userDifferentials').then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        if (res.data.length < 10) {
+          _this.differentials = res.data.differential;
+        }
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -37989,15 +38085,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _TopHandicaps_vue_vue_type_template_id_0934a0ef___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TopHandicaps.vue?vue&type=template&id=0934a0ef& */ "./resources/js/pages/TopHandicaps.vue?vue&type=template&id=0934a0ef&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _TopHandicaps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TopHandicaps.vue?vue&type=script&lang=js& */ "./resources/js/pages/TopHandicaps.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__.default)(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _TopHandicaps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _TopHandicaps_vue_vue_type_template_id_0934a0ef___WEBPACK_IMPORTED_MODULE_0__.render,
   _TopHandicaps_vue_vue_type_template_id_0934a0ef___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -38075,6 +38173,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoreLeaderboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ScoreLeaderboard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/ScoreLeaderboard.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ScoreLeaderboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/TopHandicaps.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/pages/TopHandicaps.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopHandicaps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TopHandicaps.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/TopHandicaps.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TopHandicaps_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -38600,7 +38714,9 @@ var render = function() {
             _c("div", { staticClass: "card-header" }, [_vm._v("Post a Score")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v("Input a score here.")
+              _vm._v(
+                "Input a score here. Differential = (slope/113)*(score - course rating)"
+              )
             ]),
             _vm._v(" "),
             _c(
@@ -38693,12 +38809,36 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
+                        value: _vm.score.differential,
+                        expression: "score.differential"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "differential" },
+                    domProps: { value: _vm.score.differential },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.score, "differential", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
                         value: _vm.score.user_id,
                         expression: "score.user_id"
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "", id: _vm.userid },
+                    attrs: { type: "text", placeholder: "user id" },
                     domProps: { value: _vm.score.user_id },
                     on: {
                       input: function($event) {
@@ -38843,30 +38983,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mt-5" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
+  return _c("div", { staticClass: "container mt-5" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c(
+          "div",
+          { staticClass: "card" },
+          [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v("Handicap Leaderboard")
+              _vm._v("User Handicap")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("Top 10 golfers with the best handicap.")
-            ])
-          ])
-        ])
+            _c("div", { staticClass: "card-body" }, [_vm._v("User handicap.")]),
+            _vm._v(" "),
+            _vm._l(_vm.differentials, function(handicap) {
+              return _c(
+                "div",
+                {
+                  key: handicap.differential,
+                  staticClass: "card card-body mb-2"
+                },
+                [
+                  _c("h3", [
+                    _vm._v(
+                      " \n            " +
+                        _vm._s(_vm.score.differential) +
+                        "\n          "
+                    )
+                  ])
+                ]
+              )
+            })
+          ],
+          2
+        )
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
