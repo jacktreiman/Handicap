@@ -37,6 +37,11 @@ class ScoresController extends Controller
         return ScoresResource::collection($scores);
     }
 
+    public function getHandicapSorted(){
+        $scores = Scores::orderBy('differential', 'asc')->paginate(10);
+        return ScoresResource::collection($scores);
+    }
+
     public function getAllDifferentials(){
         $differentials = Scores::orderBy('created_at', 'desc')->pluck('differential');
         return $differentials;

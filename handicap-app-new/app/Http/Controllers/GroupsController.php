@@ -35,7 +35,21 @@ class GroupsController extends Controller
         $groupScores = group_usr::rightJoin('scores', 'group_usrs.user_id', '=', 'scores.user_id')->orderBy('scores.strokes', 'asc')->paginate(40);
         return $groupScores;
     }
+    public function getGroupDifferentials(){
+        $groupScores = group_usr::rightJoin('scores', 'group_usrs.user_id', '=', 'scores.user_id')->orderBy('scores.differential', 'asc')->paginate(40);
+        return $groupScores;
+    }
 
+
+    public function joinGroup(Request $request)
+    {
+        $group_usr = new group_usr;
+        $group_usr->group_id = $request->input('group_id');
+        $group_usr->user_id = $request->input('user_id');
+
+        $group_usr->save();
+        return new group_usrResource($group_usr);
+    }
     /**
      * Store a newly created resource in storage.
      *

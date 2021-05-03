@@ -25,7 +25,13 @@
             </h3>
             <div v-for="score in scores" v-bind:key="score.id">
               <template v-if="score.group_id === group.group_id">
-                <li>{{score.user_id}}: {{score.strokes}} - Differential: {{score.differential}}</li></template></div>
+                <li>{{score.user_id}}: {{score.strokes}}</li></template></div>
+            <h3>
+              Handicap-adjusted leaderboard:
+            </h3>
+            <div v-for="differential in differentials" v-bind:key="differential.id">
+              <template v-if="differential.group_id === group.group_id">
+                <li>{{differential.user_id}}: {{differential.differential}}</li></template></div>
             <h3>
               Chat:
             </h3>
@@ -50,6 +56,7 @@ export default {
       return{
   groups: [],
   scores: [],
+  differentials: [],
   groupPosts: [],
   posts: [],
   post:{
@@ -61,6 +68,7 @@ export default {
 },
 created(){
   this.fetchScores();
+  this.fetchHandicaps();
   this.fetchGroups();
   this.fetchPosts();
 },
@@ -83,6 +91,18 @@ methods: {
           .then(res => {
             this.scores = res.data;
             console.log(this.scores);
+          })
+          .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                  });
+    },
+    fetchHandicaps(){
+      fetch('/api/groupDifferentials')
+          .then(res => res.json())
+          .then(res => {
+            this.differentials = res.data;
+            console.log(this.differentials);
           })
           .catch(function (error) {
                     // handle error

@@ -2227,11 +2227,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       groups: [],
       scores: [],
+      differentials: [],
       groupPosts: [],
       posts: [],
       post: {
@@ -2243,6 +2250,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.fetchScores();
+    this.fetchHandicaps();
     this.fetchGroups();
     this.fetchPosts();
   },
@@ -2273,8 +2281,21 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    addChat: function addChat() {
+    fetchHandicaps: function fetchHandicaps() {
       var _this3 = this;
+
+      fetch('/api/groupDifferentials').then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this3.differentials = res.data;
+        console.log(_this3.differentials);
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    addChat: function addChat() {
+      var _this4 = this;
 
       fetch('/api/post', {
         method: 'post',
@@ -2285,19 +2306,19 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         return res.json();
       }).then(function (data) {
-        _this3.post.chat = '';
+        _this4.post.chat = '';
       }).then(this.fetchPosts())["catch"](function (err) {
         return console.log(err);
       });
     },
     fetchPosts: function fetchPosts() {
-      var _this4 = this;
+      var _this5 = this;
 
       fetch('/api/posts').then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this4.groupPosts = res.data;
-        console.log(_this4.groupPosts);
+        _this5.groupPosts = res.data;
+        console.log(_this5.groupPosts);
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -2590,7 +2611,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchHandicaps: function fetchHandicaps() {
       var _this = this;
 
-      fetch('/api/scores').then(function (res) {
+      fetch('/api/differentials').then(function (res) {
         return res.json();
       }).then(function (res) {
         _this.scores = res.data;
@@ -70405,9 +70426,34 @@ var render = function() {
                                 _vm._v(
                                   _vm._s(score.user_id) +
                                     ": " +
-                                    _vm._s(score.strokes) +
-                                    " - Differential: " +
-                                    _vm._s(score.differential)
+                                    _vm._s(score.strokes)
+                                )
+                              ])
+                            ]
+                          : _vm._e()
+                      ],
+                      2
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("h3", [
+                    _vm._v(
+                      "\n            Handicap-adjusted leaderboard:\n          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.differentials, function(differential) {
+                    return _c(
+                      "div",
+                      { key: differential.id },
+                      [
+                        differential.group_id === group.group_id
+                          ? [
+                              _c("li", [
+                                _vm._v(
+                                  _vm._s(differential.user_id) +
+                                    ": " +
+                                    _vm._s(differential.differential)
                                 )
                               ])
                             ]
@@ -70780,7 +70826,9 @@ var render = function() {
               _vm._v("User Handicap")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [_vm._v("User handicap.")]),
+            _c("div", { staticClass: "card-body" }, [
+              _vm._v("Top Handicap-adjusted rounds.")
+            ]),
             _vm._v(" "),
             _vm._l(_vm.scores, function(score) {
               return _c(
@@ -70790,7 +70838,7 @@ var render = function() {
                   _c("h3", [
                     _vm._v(
                       " \n            " +
-                        _vm._s(score.id) +
+                        _vm._s(score.user_id) +
                         ": " +
                         _vm._s(score.differential) +
                         "\n          "

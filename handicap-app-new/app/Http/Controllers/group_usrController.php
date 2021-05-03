@@ -49,15 +49,7 @@ class group_usrController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $group_usr = new group_usr;
-        $group_usr->group_id = $request->input('group_id');
-        $group_usr->user_id = $request->input('user_id');
 
-        $group_usr->save();
-        return new group_usrResource($group_usr);
-    }
 
     /**
      * Display the specified resource.

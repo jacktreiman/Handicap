@@ -35,7 +35,7 @@ Route::get('userid', 'App\http\Controllers\ScoresController@getUserId');
 
 });*/
 
-Route::get('differentials', 'App\http\Controllers\ScoresController@getAllDifferentials');
+Route::get('differentials', 'App\http\Controllers\ScoresController@getHandicapSorted');
 Route::get('posts', 'App\http\Controllers\PostController@index');
 Route::post('post', 'App\http\Controllers\PostController@store');
 
@@ -62,4 +62,5 @@ Route::post('group', 'App\http\Controllers\GroupsController@store');
 
 Route::get('group_usrs', 'App\http\Controllers\group_usrController@index');
 Route::get('groupScores', 'App\http\Controllers\GroupsController@getGroupScores');
-Route::post('group_usr', 'App\http\Controllers\group_usrController@store');
+Route::post('group_usr', 'App\http\Controllers\GroupsController@joinGroup');
+Route::get('groupDifferentials', 'App\http\Controllers\GroupsController@getGroupDifferentials');

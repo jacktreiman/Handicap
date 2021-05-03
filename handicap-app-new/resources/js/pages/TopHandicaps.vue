@@ -5,10 +5,10 @@
         <div class="card">
           <div class="card-header">User Handicap</div>
 
-          <div class="card-body">User handicap.</div>
+          <div class="card-body">Top Handicap-adjusted rounds.</div>
           <div class = "card card-body mb-2" v-for="score in scores" v-bind:key="score.id">
             <h3> 
-              {{score.id}}: {{score.differential}}
+              {{score.user_id}}: {{score.differential}}
             </h3>
               </div>
         </div>
@@ -43,7 +43,7 @@ export default {
     },
     methods: {
     fetchHandicaps(){
-          fetch('/api/scores')
+          fetch('/api/differentials')
           .then(res => res.json())
           .then(res => {
             this.scores = res.data;
