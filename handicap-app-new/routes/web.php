@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/picture', function () {
+    return view('image-upload');
+});
+
 Auth::routes();
 
 // Route::get('/home/stats', function () {
@@ -42,3 +46,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/api/group_usrs', [App\Http\Controllers\group_usrController::class, 'index'])->name('home');
 
 
+    Route::get('image', [App\Http\Controllers\ImageUploadController::class, 'index']);
+    Route::post('upload', [App\Http\Controllers\ImageUploadController::class, 'upload']);
