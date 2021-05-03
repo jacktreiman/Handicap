@@ -31,6 +31,7 @@ Route::get('/home/{any}', function () {
     return view('layouts.vue');
 })->where('any', '.*');
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //added
     Auth::routes();
