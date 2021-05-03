@@ -9,6 +9,8 @@ use App\Models\Groups;
 use App\Models\User;
 use App\Models\Post;
 use App\Http\Resources\Post as PostResource;
+use App\Models\group_usr;
+use App\Http\Resources\group_usr as group_usrResource;
 class PostController extends Controller
 {
     /**
@@ -18,8 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $groups = Post::orderBy('created_at', 'desc')->paginate(40);
-        return PostResource::collection($groups);
+        $groupPosts = group_usr::rightJoin('posts', 'group_usrs.group_id', '=', 'posts.group_id')->orderBy('posts.created_at', 'desc')->paginate(40);
+        return $groupPosts;
     }
 
     /**

@@ -6,8 +6,8 @@ import ScoreLeaderboard from './pages/ScoreLeaderboard.vue';
 import TopHandicaps from './pages/TopHandicaps.vue';
 import About from './pages/About.vue';
 import Groups from './pages/Groups.vue';
-import GroupInfo from './pages/GroupInfo.vue';
-// import MyGroups from './pages/MyGroups.vue';
+//import GroupInfo from './pages/GroupInfo.vue';
+ import MyGroups from './pages/MyGroups.vue';
 
 
 Vue.use(VueRouter);
@@ -41,17 +41,17 @@ const router = new VueRouter({
             name: 'join-group',
             component: Groups
         },
-        {
-            path: '/home/join-group/group-info',
-            name: 'group-info',
-            component: GroupInfo
-        },
-
         // {
-        //     path: '/home/my-groups',
-        //     name: 'my-groups',
-        //     component: MyGroups
+        //     path: '/home/join-group/group-info',
+        //     name: 'group-info',
+        //     component: GroupInfo
         // },
+
+        {
+            path: '/home/my-groups',
+            name: 'my-groups',
+            component: MyGroups
+        },
     ]
 });
 

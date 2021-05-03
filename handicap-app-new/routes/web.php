@@ -38,5 +38,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/api/userScores', [App\Http\Controllers\userScoreController::class, 'index'])->name('home');
     //Auth::routes();
     Route::get('/api/userDifferentials', [App\Http\Controllers\userScoreController::class, 'index'])->name('home');
+    Route::get('/api/group_usrs', [App\Http\Controllers\group_usrController::class, 'index'])->name('home');
 
 

@@ -12,14 +12,17 @@
               <br>
               <button type = "submit" class = "btn btn-light tn-block">Create Group</button>
               <hr>
-              <div class="card-body"><strong>Join a friend group to chat and view friend's scores:</strong></div>
-              <br>
-              <input type="text" class="form-control" placeholder="Enter Group ID" v-model="group.id">
-              <br>
-              <button type = "submit" class = "btn btn-light tn-block"><router-link data-toggle="collapse" :to="{ name: 'group-info' }">Join Group</router-link></button>
-              <hr>
             </div>
           </form>
+          <form @submit.prevent = "addGroup_usr" class = "mb-3">
+              <div class="form-group">
+            <input type="text" class="form-control" placeholder="Group id" v-model="group_usr.group_id">
+            </div>
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="User id" v-model="group_usr.user_id">
+            </div>
+            <button type = "submit" class = "btn btn-light tn-block">Join Group</button>
+            </form>
 
           <div class="card-body"><strong>Available Friend Groups:</strong></div>
           <div class = "card card-body mb-2" v-for="group in groups" v-bind:key="group.id">
@@ -44,6 +47,11 @@ export default {
         group: {
           id: '',
           name: '',
+        },
+        group_usrs: [],
+        group_usr: {
+          group_id: '',
+          user_id: '',
         },
         pagination: {},
         edit: false
@@ -79,8 +87,25 @@ export default {
                     // handle error
                     console.log(error);
                   });
-      }
-    } 
+      },
+      addGroup_usr(){
+        fetch('/api/group_usr',{
+          method: 'post',
+          body: JSON.stringify(this.group_usr),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          //this.group.name = '';
+          this.group_usr.group_id = '';
+          this.group_usr.user_id = '';
+        })
+        .catch(err => console.log(err))
+      },
 
+    }
+    
 }
 </script>

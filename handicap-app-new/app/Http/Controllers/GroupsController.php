@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Http\Resources\Groups as GroupsResource;
 //use Auth;
 use Illuminate\Support\Facades\Auth;
+use App\Models\group_usr;
+use App\Http\Resources\group_usr as group_usrResource;
 
 class GroupsController extends Controller
 {
@@ -29,9 +31,9 @@ class GroupsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function getGroupScores(){
+        $groupScores = group_usr::rightJoin('scores', 'group_usrs.user_id', '=', 'scores.user_id')->orderBy('scores.strokes', 'asc')->paginate(40);
+        return $groupScores;
     }
 
     /**
