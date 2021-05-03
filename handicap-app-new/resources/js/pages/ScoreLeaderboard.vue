@@ -13,8 +13,6 @@
             <p>
               Score: 
               {{score.strokes}}
-              Differential: 
-              {{score.differential}}
               </p>
          
             </div>

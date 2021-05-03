@@ -6,9 +6,9 @@
           <div class="card-header">User Handicap</div>
 
           <div class="card-body">User handicap.</div>
-          <div class = "card card-body mb-2" v-for="handicap in differentials" v-bind:key="handicap.differential">
+          <div class = "card card-body mb-2" v-for="score in scores" v-bind:key="score.id">
             <h3> 
-              {{score.differential}}
+              {{score.id}}: {{score.differential}}
             </h3>
               </div>
         </div>
@@ -39,16 +39,14 @@ export default {
     } 
     },
     created(){
-      this.fetchHandicap();
+      this.fetchHandicaps();
     },
     methods: {
-    fetchHandicap(){
-          fetch('/api/userDifferentials')
+    fetchHandicaps(){
+          fetch('/api/scores')
           .then(res => res.json())
           .then(res => {
-            if(res.data.length < 10){
-            this.differentials = res.data.differential;
-            }
+            this.scores = res.data;
           })
           .catch(function (error) {
                     // handle error
