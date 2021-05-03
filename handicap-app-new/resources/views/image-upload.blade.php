@@ -32,7 +32,7 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
-      <img src="{{ url('storage/uploads'.$show->image) }}" alt="">
+ 
     </div>
   </div>
   

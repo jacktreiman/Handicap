@@ -93,6 +93,7 @@ export default {
           this.score.user_id = '';
         })
         .then(this.fetchScores())
+        .then(this.getHandicap())
         .catch(err => console.log(err))
       },
 
@@ -127,7 +128,7 @@ export default {
               for(let i = 0; i < res.data.length; i++){
                 sum += res.data[i].differential;
               }
-              this.average = sum / res.data.length;
+              this.average = (sum / res.data.length).toFixed(2);
 
           })
 

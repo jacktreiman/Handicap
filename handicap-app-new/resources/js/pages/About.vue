@@ -32,9 +32,9 @@ export default {
         edit: false
  }   
   },
-  created(){
+  mounted(){
     this.fetchScores()
-    this.createStats()
+    //this.createStats()
   },
   methods:{
     
@@ -43,12 +43,13 @@ export default {
           .then(res => res.json())
           .then(res => {
             this.scores = res.data;
-            scoreData = res.data;
+            //scoreData = res.data;
             console.log(this.scores)
-            return scoreData
+            //return scoreData
+            this.createStats()
           })
           .then(
-            
+
           )
           .catch(function (error) {
                     // handle error
@@ -70,9 +71,9 @@ export default {
 };
 //scoreData =  fetch('/api/scores');
 //console.log(scoreData)
-let url = '/api/scores';
-console.log(JSON.parse(fetch(url)))
-      d3.json(Json.parse(fetch(url)), rowConverter, function(data){
+//let url = '/api/scores';
+console.log(this.scores)
+      d3.json(this.scores, rowConverter, function(data){
       makeDesign(data)
           });
       function makeDesign(data){
@@ -83,6 +84,7 @@ console.log(JSON.parse(fetch(url)))
       svg.selectAll("circle")
       .attr("cx", function(d)
       {
+        console.log(d.id*2)
         return d.id*2;
       })
       .attr("cy", function(d)
@@ -94,7 +96,7 @@ console.log(JSON.parse(fetch(url)))
       })
       .attr("fill", function(d){
         if(d.differential < 20){
-          return "green"
+          return "red"
         }
         else {
           return "blue"

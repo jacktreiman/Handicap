@@ -1985,9 +1985,8 @@ __webpack_require__.r(__webpack_exports__);
       edit: false
     };
   },
-  created: function created() {
-    this.fetchScores();
-    this.createStats();
+  mounted: function mounted() {
+    this.fetchScores(); //this.createStats()
   },
   methods: {
     fetchScores: function fetchScores() {
@@ -1996,10 +1995,11 @@ __webpack_require__.r(__webpack_exports__);
       fetch('/api/scores').then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this.scores = res.data;
-        scoreData = res.data;
-        console.log(_this.scores);
-        return scoreData;
+        _this.scores = res.data; //scoreData = res.data;
+
+        console.log(_this.scores); //return scoreData
+
+        _this.createStats();
       }).then()["catch"](function (error) {
         // handle error
         console.log(error);
@@ -2017,17 +2017,18 @@ __webpack_require__.r(__webpack_exports__);
         };
       }; //scoreData =  fetch('/api/scores');
       //console.log(scoreData)
+      //let url = '/api/scores';
 
 
-      var url = '/api/scores';
-      console.log(JSON.parse(fetch(url)));
-      d3__WEBPACK_IMPORTED_MODULE_0__.json(Json.parse(fetch(url)), rowConverter, function (data) {
+      console.log(this.scores);
+      d3__WEBPACK_IMPORTED_MODULE_0__.json(this.scores, rowConverter, function (data) {
         makeDesign(data);
       });
 
       function makeDesign(data) {
         var svg = d3__WEBPACK_IMPORTED_MODULE_0__.select("#stats").append("svg").attr("width", "800px").attr("height", "600px");
         svg.selectAll("circle").attr("cx", function (d) {
+          console.log(d.id * 2);
           return d.id * 2;
         }).attr("cy", function (d) {
           return 300;
@@ -2035,7 +2036,7 @@ __webpack_require__.r(__webpack_exports__);
           return d.differential / 2;
         }).attr("fill", function (d) {
           if (d.differential < 20) {
-            return "green";
+            return "red";
           } else {
             return "blue";
           }
@@ -2432,7 +2433,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.score.slope = '';
         _this.score.differential = '';
         _this.score.user_id = '';
-      }).then(this.fetchScores())["catch"](function (err) {
+      }).then(this.fetchScores()).then(this.getHandicap())["catch"](function (err) {
         return console.log(err);
       });
     },
@@ -2472,7 +2473,7 @@ __webpack_require__.r(__webpack_exports__);
           sum += res.data[i].differential;
         }
 
-        _this4.average = sum / res.data.length;
+        _this4.average = (sum / res.data.length).toFixed(2);
       });
     }
   }
