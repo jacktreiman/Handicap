@@ -24,6 +24,7 @@
               <button type = "submit" class = "btn btn-light tn-block">Enter a score</button>
             </form>
             <div class = "card card-body mb-2" v-for="score in scores" v-bind:key="score.id">
+
             <h3> 
               {{score.user_id}}
             </h3>
@@ -36,6 +37,12 @@
               </div>
 
         </div>
+        <div class = "card card-body mb-2" >
+
+            <h3> 
+              Handicap: {{average}}
+            </h3>
+            </div>
       </div>
     </div>
   </div>
@@ -58,14 +65,13 @@ export default {
         pagination: {},
         edit: false,
         differentials: [],
-        differential: {
-          handicap: '',
-        }
+        average: '',
       }
     },  
         created(){
       this.fetchScores();
       this.addScore();
+      this.getHandicap();
       //this.fetchHandicap();
     },
 
@@ -111,6 +117,20 @@ export default {
                     // handle error
                     console.log(error);
                   });
+        },
+
+        getHandicap(){
+          fetch('/api/userScores')
+          .then(res => res.json())
+          .then(res => {
+            let sum = 0;
+              for(let i = 0; i < res.data.length; i++){
+                sum += res.data[i].differential;
+              }
+              this.average = sum / res.data.length;
+
+          })
+
         }
 
 } 

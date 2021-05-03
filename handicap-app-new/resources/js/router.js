@@ -9,6 +9,7 @@ import Groups from './pages/Groups.vue';
 import GroupInfo from './pages/GroupInfo.vue';
 // import MyGroups from './pages/MyGroups.vue';
 
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
