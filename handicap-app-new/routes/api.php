@@ -64,3 +64,7 @@ Route::get('group_usrs', 'App\http\Controllers\group_usrController@index');
 Route::get('groupScores', 'App\http\Controllers\GroupsController@getGroupScores');
 Route::post('group_usr', 'App\http\Controllers\GroupsController@joinGroup');
 Route::get('groupDifferentials', 'App\http\Controllers\GroupsController@getGroupDifferentials');
+
+
+Route::get('image', [ImageUploadController::class, 'index']);
+Route::post('upload', [ImageUploadController::class, 'upload']);
