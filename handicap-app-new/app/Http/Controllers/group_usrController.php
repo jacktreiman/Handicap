@@ -9,6 +9,7 @@ use App\Models\Groups;
 use App\Models\User;
 use App\Models\group_usr;
 use App\Http\Resources\group_usr as group_usrResource;
+use App\Http\Resources\Groups as GroupsResource;
 //use Auth;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,11 +21,17 @@ class group_usrController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $group_usr = group_usr::paginate(20);
-        return group_usrResource::collection($group_usr);
+        $user_id = Auth::id();
+        $groups = group_usr::where('user_id','=',$user_id)->leftJoin('groups', 'group_usrs.group_id', '=', 'groups.id')->orderBy('groups.name', 'desc')->paginate(40);
+        return $groups;
     }
+
 
     /**
      * Show the form for creating a new resource.

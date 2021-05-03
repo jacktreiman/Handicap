@@ -37,7 +37,7 @@ Route::get('userid', 'App\http\Controllers\ScoresController@getUserId');
 
 Route::get('differentials', 'App\http\Controllers\ScoresController@getAllDifferentials');
 Route::get('posts', 'App\http\Controllers\PostController@index');
-Route::get('post', 'App\http\Controllers\PostController@store');
+Route::post('post', 'App\http\Controllers\PostController@store');
 
 Route::get('userDifferentials', 'App\http\Controllers\userScoreController@getUserDifferentials');
 
@@ -61,4 +61,5 @@ Route::delete('group/{groupid}', 'App\http\Controllers\GroupsController@destroy'
 Route::post('group', 'App\http\Controllers\GroupsController@store');
 
 Route::get('group_usrs', 'App\http\Controllers\group_usrController@index');
-Route::post('group_usr', 'App\http\Controllers\GroupsController@store');
+Route::get('groupScores', 'App\http\Controllers\GroupsController@getGroupScores');
+Route::post('group_usr', 'App\http\Controllers\group_usrController@store');

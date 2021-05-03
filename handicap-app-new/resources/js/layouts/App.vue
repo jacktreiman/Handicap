@@ -64,7 +64,7 @@
             </router-link>
           </li>
 
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <router-link
               class="nav-link"
               data-toggle="collapse"
@@ -72,7 +72,7 @@
             >
               My Groups
             </router-link>
-          </li> -->
+          </li> 
         </ul>
       </div>
     </nav>
